@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Calendar, AlertTriangle } from 'lucide-react';
+import { X } from 'lucide-react';
 import {
   ParsedDataset,
   InventoryDaily,
@@ -51,16 +51,16 @@ export const SidePanel: React.FC<SidePanelProps> = ({
   );
 
   return (
-    <aside className="fixed inset-y-0 right-0 z-40 w-full sm:w-[480px] bg-white border-l border-[#DDD6FE] shadow-2xl flex flex-col overflow-y-auto">
+    <aside className="fixed inset-y-0 right-0 z-40 w-full sm:w-[480px] bg-white border-l border-[#FED7AA] shadow-2xl flex flex-col overflow-y-auto">
       {/* Header */}
-      <div className="p-4 border-b border-[#DDD6FE] bg-[#F3EEFF]/50 flex items-start justify-between">
+      <div className="p-4 border-b border-[#FED7AA] bg-[#FFF7ED]/70 flex items-start justify-between">
         <div>
-          <div className="flex items-center gap-1.5 text-xs text-[#6D28D9] font-semibold uppercase tracking-wider">
+          <div className="flex items-center gap-1.5 text-xs text-[#EA580C] font-semibold uppercase tracking-wider">
             <span>Store Diagnostics</span>
             <span>•</span>
             <span>{storeId}</span>
           </div>
-          <h2 className="text-xl font-bold text-[#4C1D95] font-heading mt-0.5">
+          <h2 className="text-xl font-bold text-[#9A3412] font-heading mt-0.5">
             {product?.product_name || skuId}
           </h2>
           <p className="text-xs text-[#111111]/70">
@@ -70,7 +70,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
         <button
           onClick={onClose}
-          className="p-1.5 rounded-lg border border-[#111111]/20 hover:bg-[#F3EEFF] text-[#111111] transition-colors"
+          className="p-1.5 rounded-lg border border-[#111111]/20 hover:bg-[#FFF7ED] text-[#111111] transition-colors cursor-pointer"
           title="Close panel"
         >
           <X className="w-4 h-4" />
@@ -79,9 +79,9 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
       <div className="p-5 space-y-6">
         {/* SECTION 1: 7-DAY STOCK CHART */}
-        <section className="bg-white border border-[#DDD6FE] rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between pb-2 border-b border-[#F3EEFF]">
-            <h3 className="text-sm font-bold text-[#4C1D95] font-heading">
+        <section className="bg-white border border-[#FED7AA] rounded-xl p-4 shadow-xs">
+          <div className="flex items-center justify-between pb-2 border-b border-[#FFF7ED]">
+            <h3 className="text-sm font-bold text-[#9A3412] font-heading">
               7-Day Stock Chart (22–28 Sep 2026)
             </h3>
             <span className="text-[10px] text-[#111111]/60 font-mono">
@@ -94,16 +94,16 @@ export const SidePanel: React.FC<SidePanelProps> = ({
               {/* Daily metric bar visualizer */}
               <div className="space-y-2.5">
                 {dailyRecords.map((day) => (
-                  <div key={day.date} className="p-2 rounded-lg bg-[#F3EEFF]/40 border border-[#DDD6FE]/40 text-xs">
+                  <div key={day.date} className="p-2 rounded-lg bg-[#FFF7ED]/50 border border-[#FED7AA]/50 text-xs">
                     <div className="flex items-center justify-between font-mono font-medium text-[#111111]">
-                      <span className="text-[11px] text-[#4C1D95] font-bold">
+                      <span className="text-[11px] text-[#9A3412] font-bold">
                         {formatDateDDMMYYYY(day.date)}
                       </span>
                       <div className="flex items-center gap-2 text-[11px]">
-                        <span>Del: <strong className="text-[#6D28D9]">+{day.delivered}</strong></span>
+                        <span>Del: <strong className="text-[#EA580C]">+{day.delivered}</strong></span>
                         <span>Sold: <strong>-{day.sold}</strong></span>
                         {day.waste > 0 && (
-                          <span className="text-[#4C1D95] font-bold">
+                          <span className="text-[#9A3412] font-bold">
                             Waste: {day.waste}
                           </span>
                         )}
@@ -112,7 +112,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     </div>
 
                     {/* Proportional visual bar */}
-                    <div className="mt-1.5 flex h-2 rounded-full overflow-hidden bg-white border border-[#DDD6FE]">
+                    <div className="mt-1.5 flex h-2 rounded-full overflow-hidden bg-white border border-[#FED7AA]">
                       <div
                         style={{ width: `${Math.min(100, (day.sold / maxStock) * 100)}%` }}
                         className="bg-[#111111]"
@@ -120,13 +120,13 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                       />
                       <div
                         style={{ width: `${Math.min(100, (day.delivered / maxStock) * 100)}%` }}
-                        className="bg-[#6D28D9]"
+                        className="bg-[#EA580C]"
                         title={`Delivered: ${day.delivered}`}
                       />
                       {day.waste > 0 && (
                         <div
                           style={{ width: `${Math.min(100, (day.waste / maxStock) * 100)}%` }}
-                          className="bg-[#4C1D95]"
+                          className="bg-[#9A3412]"
                           title={`Waste: ${day.waste}`}
                         />
                       )}
@@ -136,10 +136,10 @@ export const SidePanel: React.FC<SidePanelProps> = ({
               </div>
 
               {/* Legend for 7-day chart */}
-              <div className="mt-3 pt-2 border-t border-[#F3EEFF] flex items-center justify-between text-[11px] text-[#111111]/70">
+              <div className="mt-3 pt-2 border-t border-[#FFF7ED] flex items-center justify-between text-[11px] text-[#111111]/70">
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
-                    <span className="w-2.5 h-2.5 rounded-xs bg-[#6D28D9]"></span>
+                    <span className="w-2.5 h-2.5 rounded-xs bg-[#EA580C]"></span>
                     <span>Delivered</span>
                   </div>
                   <div className="flex items-center gap-1">
@@ -147,7 +147,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     <span>Sold</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <span className="w-2.5 h-2.5 rounded-xs bg-[#4C1D95]"></span>
+                    <span className="w-2.5 h-2.5 rounded-xs bg-[#9A3412]"></span>
                     <span>Waste</span>
                   </div>
                 </div>
@@ -161,9 +161,9 @@ export const SidePanel: React.FC<SidePanelProps> = ({
         </section>
 
         {/* SECTION 2: STORE WASTE BY CATEGORY */}
-        <section className="bg-white border border-[#DDD6FE] rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between pb-2 border-b border-[#F3EEFF]">
-            <h3 className="text-sm font-bold text-[#4C1D95] font-heading">
+        <section className="bg-white border border-[#FED7AA] rounded-xl p-4 shadow-xs">
+          <div className="flex items-center justify-between pb-2 border-b border-[#FFF7ED]">
+            <h3 className="text-sm font-bold text-[#9A3412] font-heading">
               Store Waste by Category
             </h3>
             <span className="text-[10px] text-[#111111]/60 font-mono">
@@ -182,14 +182,14 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                     <span className="font-medium">{cat.category}</span>
                     <span className="font-mono font-semibold">
                       {formatGBP(cat.waste_gbp)}{' '}
-                      <span className="text-[#6D28D9] font-normal text-[11px]">
+                      <span className="text-[#EA580C] font-normal text-[11px]">
                         ({formatPct(cat.waste_pct)})
                       </span>
                     </span>
                   </div>
-                  <div className="w-full bg-[#F3EEFF] h-2 rounded-full overflow-hidden border border-[#DDD6FE]">
+                  <div className="w-full bg-[#FFF7ED] h-2 rounded-full overflow-hidden border border-[#FED7AA]">
                     <div
-                      className="bg-[#6D28D9] h-full rounded-full transition-all"
+                      className="bg-[#EA580C] h-full rounded-full transition-all"
                       style={{ width: `${barWidth}%` }}
                     />
                   </div>
@@ -200,17 +200,17 @@ export const SidePanel: React.FC<SidePanelProps> = ({
         </section>
 
         {/* SECTION 3: SUPPLIER STOCKOUT TREND */}
-        <section className="bg-white border border-[#DDD6FE] rounded-xl p-4 shadow-xs">
-          <div className="flex items-center justify-between pb-2 border-b border-[#F3EEFF]">
+        <section className="bg-white border border-[#FED7AA] rounded-xl p-4 shadow-xs">
+          <div className="flex items-center justify-between pb-2 border-b border-[#FFF7ED]">
             <div>
-              <h3 className="text-sm font-bold text-[#4C1D95] font-heading">
+              <h3 className="text-sm font-bold text-[#9A3412] font-heading">
                 Supplier Stockout Trend
               </h3>
               <p className="text-[11px] text-[#111111]/70">
                 {supplier?.supplier_id}: {supplier?.supplier_name} (Lead time: {supplier?.lead_time_days}d)
               </p>
             </div>
-            <span className="text-xs font-mono font-bold text-[#4C1D95]">
+            <span className="text-xs font-mono font-bold text-[#9A3412]">
               {supplier?.on_time_delivery_pct}% OTD
             </span>
           </div>
@@ -229,7 +229,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                         y1={y}
                         x2="375"
                         y2={y}
-                        stroke="#F3EEFF"
+                        stroke="#FFF7ED"
                         strokeWidth="1"
                         strokeDasharray="3 3"
                       />
@@ -257,7 +257,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                       <path
                         d={`M ${points.join(' L ')}`}
                         fill="none"
-                        stroke="#6D28D9"
+                        stroke="#EA580C"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -271,7 +271,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
                             cx={x}
                             cy={y}
                             r={d.stockout_pct > 10 ? 3.5 : 2.5}
-                            fill={d.stockout_pct > 10 ? '#4C1D95' : '#111111'}
+                            fill={d.stockout_pct > 10 ? '#9A3412' : '#111111'}
                             stroke="#ffffff"
                             strokeWidth="1"
                           />
@@ -296,7 +296,7 @@ export const SidePanel: React.FC<SidePanelProps> = ({
 
             <div className="mt-2 text-[11px] text-[#111111]/70 flex items-center justify-between">
               <span>Avg stockout rate: <strong>{(supplierTrend.reduce((a, b) => a + b.stockout_pct, 0) / 13).toFixed(1)}%</strong></span>
-              <span>Latest week (W13): <strong className="text-[#6D28D9]">{supplierTrend[12]?.stockout_pct}%</strong></span>
+              <span>Latest week (W13): <strong className="text-[#EA580C]">{supplierTrend[12]?.stockout_pct}%</strong></span>
             </div>
           </div>
         </section>

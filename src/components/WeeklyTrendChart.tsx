@@ -45,10 +45,10 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
   const activeData = hoveredIndex !== null ? data[hoveredIndex] : data[data.length - 1];
 
   return (
-    <div className="bg-white border border-[#DDD6FE] rounded-xl p-5 shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#F3EEFF]">
+    <div className="bg-white border border-[#FED7AA] rounded-xl p-5 shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-3 border-b border-[#FFF7ED]">
         <div>
-          <h2 className="text-lg font-bold text-[#4C1D95] font-heading">
+          <h2 className="text-lg font-bold text-[#9A3412] font-heading">
             Weekly Trend: Waste £ vs. Stockout %
           </h2>
           <p className="text-xs text-[#111111]/70">
@@ -59,7 +59,7 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
         {/* Legend */}
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-xs bg-[#6D28D9]"></span>
+            <span className="w-3 h-3 rounded-xs bg-[#EA580C]"></span>
             <span className="font-medium text-[#111111]">Waste (£)</span>
           </div>
           <div className="flex items-center gap-1.5">
@@ -77,10 +77,10 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
           style={{ minHeight: '220px' }}
         >
           <defs>
-            {/* Soft purple gradient for waste area */}
+            {/* Soft warm orange gradient for waste area */}
             <linearGradient id="wasteGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#6D28D9" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="#6D28D9" stopOpacity="0.02" />
+              <stop offset="0%" stopColor="#EA580C" stopOpacity="0.22" />
+              <stop offset="100%" stopColor="#EA580C" stopOpacity="0.02" />
             </linearGradient>
           </defs>
 
@@ -94,7 +94,7 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
                   y1={y}
                   x2={width - padding.right}
                   y2={y}
-                  stroke="#F3EEFF"
+                  stroke="#FFF7ED"
                   strokeWidth="1.5"
                   strokeDasharray={val === 0 ? '0' : '4 4'}
                 />
@@ -130,11 +130,11 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
           {/* Waste Area Fill */}
           <path d={wasteAreaPath} fill="url(#wasteGradient)" />
 
-          {/* Waste Line (Purple) */}
+          {/* Waste Line (Orange) */}
           <path
             d={wastePath}
             fill="none"
-            stroke="#6D28D9"
+            stroke="#EA580C"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -167,7 +167,7 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
                     y1={padding.top}
                     x2={cx}
                     y2={padding.top + chartHeight}
-                    stroke="#4C1D95"
+                    stroke="#9A3412"
                     strokeWidth="1.5"
                     strokeDasharray="2 2"
                   />
@@ -179,7 +179,7 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
                   y={padding.top + chartHeight + 20}
                   textAnchor="middle"
                   className={`text-[11px] font-medium transition-colors ${
-                    isHovered ? 'fill-[#4C1D95] font-bold' : 'fill-[#111111]/70'
+                    isHovered ? 'fill-[#9A3412] font-bold' : 'fill-[#111111]/70'
                   }`}
                 >
                   W{d.week}
@@ -190,7 +190,7 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
                   cx={cx}
                   cy={cyWaste}
                   r={isHovered ? 5.5 : 3.5}
-                  fill="#6D28D9"
+                  fill="#EA580C"
                   stroke="#ffffff"
                   strokeWidth="2"
                   className="transition-all"
@@ -224,13 +224,13 @@ export const WeeklyTrendChart: React.FC<WeeklyTrendChartProps> = ({ data }) => {
         </svg>
 
         {/* Dynamic Summary Strip below chart */}
-        <div className="mt-2 pt-2 border-t border-[#F3EEFF] flex flex-wrap items-center justify-between text-xs gap-3">
+        <div className="mt-2 pt-2 border-t border-[#FFF7ED] flex flex-wrap items-center justify-between text-xs gap-3">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-[#4C1D95] font-mono">
+            <span className="font-semibold text-[#9A3412] font-mono">
               Week {activeData.week}:
             </span>
             <span className="text-[#111111]">
-              Waste: <strong className="text-[#6D28D9]">{formatGBP(activeData.waste_gbp)}</strong> ({formatPct(activeData.fresh_waste_pct)} fresh)
+              Waste: <strong className="text-[#EA580C]">{formatGBP(activeData.waste_gbp)}</strong> ({formatPct(activeData.fresh_waste_pct)} fresh)
             </span>
             <span className="text-[#111111]/40">•</span>
             <span className="text-[#111111]">

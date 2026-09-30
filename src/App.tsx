@@ -96,7 +96,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#111111] flex flex-col font-sans selection:bg-[#F3EEFF] selection:text-[#4C1D95]">
+    <div className="min-h-screen bg-white text-[#111111] flex flex-col font-sans selection:bg-[#FFEDD5] selection:text-[#9A3412]">
       {/* Header */}
       <Header
         stores={dataset.dim_stores}
@@ -124,14 +124,14 @@ export default function App() {
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Active Filter Bar Indicator if filtered */}
         {(selectedStoreId !== 'ALL' || selectedCategory !== 'ALL' || isLiveDemoActive) && (
-          <div className="flex flex-wrap items-center justify-between p-3 rounded-xl bg-[#F3EEFF] border border-[#DDD6FE] text-xs">
+          <div className="flex flex-wrap items-center justify-between p-3 rounded-xl bg-[#FFF7ED] border border-[#FED7AA] text-xs">
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-[#4C1D95]">Active Filter View:</span>
+              <span className="font-semibold text-[#9A3412]">Active Filter View:</span>
               <span className="font-mono text-[#111111]">
                 Store: <strong>{selectedStoreId}</strong> · Category: <strong>{selectedCategory}</strong>
               </span>
               {isLiveDemoActive && (
-                <span className="bg-[#6D28D9] text-white px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                <span className="bg-[#EA580C] text-white px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
                   Live Demo Mode (SKU003)
                 </span>
               )}
@@ -143,7 +143,7 @@ export default function App() {
                 setSelectedCategory('ALL');
                 setIsLiveDemoActive(false);
               }}
-              className="text-[#6D28D9] hover:underline font-medium text-xs cursor-pointer"
+              className="text-[#EA580C] hover:underline font-medium text-xs cursor-pointer"
             >
               Reset to Chain Overview
             </button>

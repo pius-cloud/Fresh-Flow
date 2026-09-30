@@ -1,6 +1,6 @@
 import React from 'react';
 import { CalculatedRiskItem } from '../utils/calculations';
-import { AlertCircle, ChevronRight, ArrowUpDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface RiskListProps {
   items: CalculatedRiskItem[];
@@ -43,14 +43,14 @@ export const RiskList: React.FC<RiskListProps> = ({
   const top10 = filtered.slice(0, 10);
 
   return (
-    <div className="bg-white border border-[#DDD6FE] rounded-xl p-5 shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-[#F3EEFF] gap-2">
+    <div className="bg-white border border-[#FED7AA] rounded-xl p-5 shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-3 border-b border-[#FFF7ED] gap-2">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-bold text-[#4C1D95] font-heading">
+            <h2 className="text-lg font-bold text-[#9A3412] font-heading">
               Risk Priority List (Top 10)
             </h2>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-[#F3EEFF] text-[#4C1D95] font-semibold border border-[#DDD6FE]">
+            <span className="text-xs px-2 py-0.5 rounded-full bg-[#FFF7ED] text-[#9A3412] font-semibold border border-[#FED7AA]">
               As of 28/09/2026
             </span>
           </div>
@@ -72,7 +72,7 @@ export const RiskList: React.FC<RiskListProps> = ({
         <div className="mt-3 overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-[#DDD6FE]/60 text-[#111111]/70 uppercase tracking-wider text-[11px] bg-[#F3EEFF]/40">
+              <tr className="border-b border-[#FED7AA]/60 text-[#111111]/70 uppercase tracking-wider text-[11px] bg-[#FFF7ED]/50">
                 <th className="py-2.5 px-3 font-semibold">Risk Level</th>
                 <th className="py-2.5 px-3 font-semibold">Type</th>
                 <th className="py-2.5 px-3 font-semibold">Product</th>
@@ -83,7 +83,7 @@ export const RiskList: React.FC<RiskListProps> = ({
                 <th className="py-2.5 px-2 text-center"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#F3EEFF]">
+            <tbody className="divide-y divide-[#FFF7ED]">
               {top10.map((item) => {
                 const isSelected =
                   selectedItem &&
@@ -91,12 +91,12 @@ export const RiskList: React.FC<RiskListProps> = ({
                   selectedItem.sku_id === item.sku_id;
 
                 // Risk badge styling rules:
-                // High = solid purple (#6D28D9) with white text
-                // Medium = light purple (#DDD6FE)
+                // High = solid orange (#EA580C) with white text
+                // Medium = light orange (#FFEDD5) with deep orange text (#9A3412)
                 // Low = white with black outline
-                let badgeClass = 'bg-[#6D28D9] text-white';
+                let badgeClass = 'bg-[#EA580C] text-white';
                 if (item.risk_level === 'Medium') {
-                  badgeClass = 'bg-[#DDD6FE] text-[#4C1D95]';
+                  badgeClass = 'bg-[#FFEDD5] text-[#9A3412]';
                 } else if (item.risk_level === 'Low') {
                   badgeClass = 'bg-white border border-[#111111] text-[#111111]';
                 }
@@ -107,8 +107,8 @@ export const RiskList: React.FC<RiskListProps> = ({
                     onClick={() => onSelectItem(item)}
                     className={`cursor-pointer transition-colors group ${
                       isSelected
-                        ? 'bg-[#F3EEFF] border-l-4 border-l-[#6D28D9]'
-                        : 'hover:bg-[#F3EEFF]/60'
+                        ? 'bg-[#FFF7ED] border-l-4 border-l-[#EA580C]'
+                        : 'hover:bg-[#FFF7ED]/60'
                     }`}
                   >
                     {/* Risk Badge */}
@@ -126,7 +126,7 @@ export const RiskList: React.FC<RiskListProps> = ({
                         {item.risk_type}
                       </span>
                       {item.is_high_expiry && item.expiry_units_at_risk > 0 && (
-                        <span className="block text-[10px] text-[#6D28D9] font-medium">
+                        <span className="block text-[10px] text-[#EA580C] font-medium">
                           {item.expiry_units_at_risk} units risk
                         </span>
                       )}
@@ -139,7 +139,7 @@ export const RiskList: React.FC<RiskListProps> = ({
 
                     {/* Product */}
                     <td className="py-3 px-3">
-                      <div className="font-medium text-[#111111] group-hover:text-[#4C1D95]">
+                      <div className="font-medium text-[#111111] group-hover:text-[#9A3412]">
                         {item.product_name}
                       </div>
                       <div className="text-[10px] text-[#111111]/60 font-mono">
@@ -170,7 +170,7 @@ export const RiskList: React.FC<RiskListProps> = ({
                         <span
                           className={`font-mono font-semibold ${
                             item.min_days_to_expiry <= 1
-                              ? 'text-[#6D28D9]'
+                              ? 'text-[#EA580C]'
                               : 'text-[#111111]'
                           }`}
                         >
@@ -194,7 +194,7 @@ export const RiskList: React.FC<RiskListProps> = ({
                     </td>
 
                     {/* Action Icon */}
-                    <td className="py-3 px-2 text-center text-[#111111]/40 group-hover:text-[#6D28D9]">
+                    <td className="py-3 px-2 text-center text-[#111111]/40 group-hover:text-[#EA580C]">
                       <ChevronRight className="w-4 h-4 mx-auto" />
                     </td>
                   </tr>

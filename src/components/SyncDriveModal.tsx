@@ -19,8 +19,7 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
 }) => {
   const [isSyncing, setIsSyncing] = useState(false);
   const [syncStatus, setSyncStatus] = useState<string | null>(null);
-  const [selectedFolder, setSelectedFolder] = useState('FreshBasket_Operations_Daily_CSV');
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [selectedFolder] = useState('FreshBasket_Operations_Daily_CSV');
 
   if (!isOpen) return null;
 
@@ -203,15 +202,15 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#111111]/40 backdrop-blur-xs">
-      <div className="bg-white border border-[#DDD6FE] rounded-2xl max-w-md w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+      <div className="bg-white border border-[#FED7AA] rounded-2xl max-w-md w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         {/* Header */}
-        <div className="p-4 border-b border-[#DDD6FE] bg-[#F3EEFF] flex items-center justify-between">
+        <div className="p-4 border-b border-[#FED7AA] bg-[#FFF7ED] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-lg bg-[#6D28D9] text-white">
+            <div className="p-2 rounded-lg bg-[#EA580C] text-white">
               <HardDrive className="w-4 h-4" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-[#4C1D95] font-heading">
+              <h3 className="text-base font-bold text-[#9A3412] font-heading">
                 Sync from Google Drive
               </h3>
               <p className="text-[11px] text-[#111111]/70">
@@ -222,7 +221,7 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-1 rounded-lg border border-[#111111]/20 hover:bg-white text-[#111111] transition-colors"
+            className="p-1 rounded-lg border border-[#111111]/20 hover:bg-white text-[#111111] transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
           </button>
@@ -230,18 +229,18 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
 
         {/* Content */}
         <div className="p-5 space-y-4">
-          <div className="p-3 rounded-xl bg-[#F3EEFF] border border-[#DDD6FE] text-xs">
-            <div className="flex items-center justify-between text-[#4C1D95] font-semibold">
+          <div className="p-3 rounded-xl bg-[#FFF7ED] border border-[#FED7AA] text-xs">
+            <div className="flex items-center justify-between text-[#9A3412] font-semibold">
               <span>Google Account Connected</span>
-              <span className="text-[10px] bg-white px-2 py-0.5 rounded-full border border-[#DDD6FE]">
+              <span className="text-[10px] bg-white px-2 py-0.5 rounded-full border border-[#FED7AA]">
                 Active
               </span>
             </div>
             <div className="mt-1 text-[#111111]/80 flex items-center gap-1.5">
-              <Folder className="w-3.5 h-3.5 text-[#6D28D9]" />
+              <Folder className="w-3.5 h-3.5 text-[#EA580C]" />
               <span className="font-mono text-[11px]">{selectedFolder}</span>
             </div>
-            <div className="mt-2 pt-2 border-t border-[#DDD6FE]/60 text-[11px] text-[#111111]/60 flex items-center justify-between">
+            <div className="mt-2 pt-2 border-t border-[#FED7AA]/60 text-[11px] text-[#111111]/60 flex items-center justify-between">
               <span>Last Synced:</span>
               <strong className="text-[#111111] font-mono">{lastSynced}</strong>
             </div>
@@ -251,14 +250,14 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
           <button
             onClick={handleDriveSync}
             disabled={isSyncing}
-            className="w-full py-2.5 px-4 rounded-xl bg-[#6D28D9] hover:bg-[#5B21B6] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer disabled:opacity-60"
+            className="w-full py-2.5 px-4 rounded-xl bg-[#EA580C] hover:bg-[#C2410C] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer disabled:opacity-60"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
             <span>{isSyncing ? 'Syncing Tables...' : 'Sync FreshBasket Folder Now'}</span>
           </button>
 
           {/* Manual CSV Drag / Drop Option */}
-          <div className="relative border-2 border-dashed border-[#DDD6FE] hover:border-[#6D28D9] rounded-xl p-4 text-center transition-colors">
+          <div className="relative border-2 border-dashed border-[#FED7AA] hover:border-[#EA580C] rounded-xl p-4 text-center transition-colors">
             <input
               type="file"
               multiple
@@ -266,7 +265,7 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
               onChange={handleFileUpload}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
-            <UploadCloud className="w-6 h-6 mx-auto text-[#6D28D9] mb-1" />
+            <UploadCloud className="w-6 h-6 mx-auto text-[#EA580C] mb-1" />
             <p className="text-xs font-medium text-[#111111]">
               Or drop updated CSV files here
             </p>
@@ -276,18 +275,18 @@ export const SyncDriveModal: React.FC<SyncDriveModalProps> = ({
           </div>
 
           {syncStatus && (
-            <div className="p-3 rounded-lg bg-[#F3EEFF] border border-[#DDD6FE] text-xs text-[#4C1D95] flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-[#6D28D9] shrink-0" />
+            <div className="p-3 rounded-lg bg-[#FFF7ED] border border-[#FED7AA] text-xs text-[#9A3412] flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-[#EA580C] shrink-0" />
               <span>{syncStatus}</span>
             </div>
           )}
         </div>
 
         {/* Footer */}
-        <div className="p-3 border-t border-[#DDD6FE] bg-white flex justify-end">
+        <div className="p-3 border-t border-[#FED7AA] bg-white flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-lg border border-[#111111]/20 hover:bg-[#F3EEFF] text-[#111111] text-xs font-medium transition-colors"
+            className="px-4 py-1.5 rounded-lg border border-[#111111]/20 hover:bg-[#FFF7ED] text-[#111111] text-xs font-medium transition-colors cursor-pointer"
           >
             Close
           </button>

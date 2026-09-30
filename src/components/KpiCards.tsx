@@ -109,13 +109,13 @@ export const KpiCards: React.FC<KpiCardsProps> = ({
       {kpis.map((kpi, idx) => (
         <div
           key={idx}
-          className="bg-[#F3EEFF] border border-[#DDD6FE] rounded-xl p-4 transition-all hover:border-[#6D28D9]/40 shadow-xs"
+          className="bg-[#FFF7ED] border border-[#FED7AA] rounded-xl p-4 transition-all hover:border-[#EA580C]/40 shadow-xs"
         >
           <div className="flex items-center justify-between">
-            <span className="text-xs uppercase tracking-wider font-semibold text-[#6D28D9]">
+            <span className="text-xs uppercase tracking-wider font-semibold text-[#EA580C]">
               {kpi.label}
             </span>
-            <span className="text-[10px] font-medium text-[#111111]/60 px-2 py-0.5 rounded-full bg-white/70 border border-[#DDD6FE]">
+            <span className="text-[10px] font-medium text-[#111111]/60 px-2 py-0.5 rounded-full bg-white/80 border border-[#FED7AA]">
               {kpi.hint}
             </span>
           </div>
