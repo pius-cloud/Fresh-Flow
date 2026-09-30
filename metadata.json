@@ -1,0 +1,6 @@
+{
+  "name": "FreshFlow",
+  "description": "Stockout & expiry risk monitoring, waste reduction, and intelligent store stock transfer engine for FreshBasket UK grocery stores.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
